@@ -10,6 +10,20 @@ new Vue({
   },
 
   methods: {
+    startGame: function() {
+      this.gameStarted = true;
+    },
+    checkForWinners: function() {
+      if (this.monsterHealth <= 0) {
+        alert('You won!');
+        this.giveUp();
+        this.moves = [];
+      } else if (this.playerHealth <= 0) {
+        alert('You lost!');
+        this.giveUp();
+        this.moves = [];
+      }
+    },
     attack: function() {
       var playerAttack = Math.floor(5 + Math.random() * 8);
       var monsterAttack = Math.floor(5 + Math.random() * 8);
@@ -17,6 +31,8 @@ new Vue({
       this.moves.unshift('PLAYER HITS MONSTER FOR ' + playerAttack);
       this.playerHealth -= monsterAttack;
       this.moves.unshift('MONSTER HITS PLAYER FOR ' + monsterAttack);
+
+      this.checkForWinners();
     },
     specialAttack: function() {
       var playerAttack = Math.floor(10 + Math.random() * 8);
@@ -25,6 +41,8 @@ new Vue({
       this.moves.unshift('PLAYER HITS MONSTER FOR ' + playerAttack);
       this.playerHealth -= monsterAttack;
       this.moves.unshift('MONSTER HITS PLAYER FOR ' + monsterAttack);
+
+      this.checkForWinners();
     },
     heal: function() {
       var playerHealing = 10;
@@ -33,6 +51,8 @@ new Vue({
       this.moves.unshift('PLAYER HEALS THEMSELF FOR ' + playerHealing);
       this.playerHealth -= monsterAttack;
       this.moves.unshift('MONSTER HITS PLAYER FOR ' + monsterAttack);
+
+      this.checkForWinners();
     },
     giveUp: function() {
       this.gameStarted = false;
