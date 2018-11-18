@@ -30,34 +30,33 @@ new Vue({
     calculateDamage: function(min, range) {
       return Math.floor(min + Math.random() * range);
     },
-    attack: function() {
-      var playerAttack = this.calculateDamage(5, 6);
+    monsterAttacks: function() {
       var monsterAttack = this.calculateDamage(5, 8);
-      this.monsterHealth -= playerAttack;
-      this.moves.unshift('PLAYER HITS MONSTER FOR ' + playerAttack);
       this.playerHealth -= monsterAttack;
       this.moves.unshift('MONSTER HITS PLAYER FOR ' + monsterAttack);
+    },
+    attack: function() {
+      var playerAttack = this.calculateDamage(5, 6);
+      this.monsterHealth -= playerAttack;
+      this.moves.unshift('PLAYER HITS MONSTER FOR ' + playerAttack);
 
+      this.monsterAttacks();
       this.checkForWinners();
     },
     specialAttack: function() {
       var playerAttack = this.calculateDamage(10, 6);
-      var monsterAttack = this.calculateDamage(5, 8);
       this.monsterHealth -= playerAttack;
       this.moves.unshift('PLAYER HITS MONSTER FOR ' + playerAttack);
-      this.playerHealth -= monsterAttack;
-      this.moves.unshift('MONSTER HITS PLAYER FOR ' + monsterAttack);
 
+      this.monsterAttacks();
       this.checkForWinners();
     },
     heal: function() {
       var playerHealing = 10;
-      var monsterAttack = this.calculateDamage(5, 8);
       this.playerHealth += playerHealing;
       this.moves.unshift('PLAYER HEALS THEMSELF FOR ' + playerHealing);
-      this.playerHealth -= monsterAttack;
-      this.moves.unshift('MONSTER HITS PLAYER FOR ' + monsterAttack);
 
+      this.monsterAttacks();
       this.checkForWinners();
     },
     giveUp: function() {
