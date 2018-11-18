@@ -43,7 +43,7 @@
         <div class="small-12 columns">
             <ul>
                 <li v-for="(move, i) in moves">
-                    <span :class="{'monster-turn': i % 2 != 0, 'player-turn': i % 2 === 0}">{{ move }}</span>
+                    <span :class="{'monster-turn': i % 2 === 0, 'player-turn': i % 2 != 0}">{{ move }}</span>
                 </li>
             </ul>
         </div>
