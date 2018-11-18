@@ -12,16 +12,19 @@ new Vue({
   methods: {
     startGame: function() {
       this.gameStarted = true;
+      this.playerHealth = 100;
+      this.monsterHealth = 100;
+      this.moves = [];
     },
     checkForWinners: function() {
       if (this.monsterHealth <= 0) {
+        this.monsterHealth = 0;
         alert('You won!');
         this.giveUp();
-        this.moves = [];
       } else if (this.playerHealth <= 0) {
+        this.playerHealth = 0;
         alert('You lost!');
         this.giveUp();
-        this.moves = [];
       }
     },
     attack: function() {
@@ -56,9 +59,6 @@ new Vue({
     },
     giveUp: function() {
       this.gameStarted = false;
-      this.playerHealth = 100;
-      this.monsterHealth = 100;
-      this.momves = [];
     }
   }
 });
