@@ -1,6 +1,6 @@
 /* global Vue */
 
-new Vue({
+var vm = new Vue({
   el: '#app',
   data: {
     gameStarted: false,
@@ -46,7 +46,7 @@ new Vue({
     specialAttack: function() {
       var playerAttack = this.calculateDamage(10, 6);
       this.monsterHealth -= playerAttack;
-      this.moves.unshift('PLAYER HITS MONSTER FOR ' + playerAttack);
+      this.moves.unshift('PLAYER HITS MONSTER HARD FOR ' + playerAttack);
 
       this.monsterAttacks();
       this.checkForWinners();
@@ -64,3 +64,5 @@ new Vue({
     }
   }
 });
+
+console.log(vm);
