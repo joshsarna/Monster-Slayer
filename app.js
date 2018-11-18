@@ -52,7 +52,7 @@ new Vue({
       this.checkForWinners();
     },
     heal: function() {
-      var playerHealing = 10;
+      var playerHealing = Math.min(100 - this.playerHealth, 10);
       this.playerHealth += playerHealing;
       this.moves.unshift('PLAYER HEALS THEMSELF FOR ' + playerHealing);
 
