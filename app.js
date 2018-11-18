@@ -25,6 +25,14 @@ new Vue({
       this.moves.push('PLAYER HITS MONSTER FOR ' + playerAttack);
       this.playerHealth -= monsterAttack;
       this.moves.push('MONSTER HITS PLAYER FOR ' + monsterAttack);
+    },
+    heal: function() {
+      var playerHealing = 10;
+      var monsterAttack = Math.floor(5 + Math.random() * 8);
+      this.playerHealth += playerHealing;
+      this.moves.push('PLAYER HEALS THEMSELF FOR ' + playerHealing);
+      this.playerHealth -= monsterAttack;
+      this.moves.push('MONSTER HITS PLAYER FOR ' + monsterAttack);
     }
   }
 });
