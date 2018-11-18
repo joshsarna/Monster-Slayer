@@ -33,6 +33,12 @@ new Vue({
       this.moves.push('PLAYER HEALS THEMSELF FOR ' + playerHealing);
       this.playerHealth -= monsterAttack;
       this.moves.push('MONSTER HITS PLAYER FOR ' + monsterAttack);
+    },
+    giveUp: function() {
+      this.gameStarted = false;
+      this.playerHealth = 100;
+      this.monsterHealth = 100;
+      this.momves = [];
     }
   }
 });
